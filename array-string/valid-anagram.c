@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <string.h>
+
+int isAnagram(char s[], char t[])
+{
+    if (strlen(s) != strlen(t))
+    {
+        return 0;
+    }
+
+    int count[26] = {0};
+
+    for (int i = 0; s[i] != '\0'; i++)
+    {
+        count[s[i] - 'a']++;
+        count[t[i] - 'a']--;
+    }
+
+    for (int i = 0; i < 26; i++)
+    {
+        if (count[i] != 0)
+        {
+            return 0;
+        }
+    }
+
+    return 1;
+}
+
+int main()
+{
+    char s1[] = "anagram";
+    char t1[] = "nagaram";
+
+    printf("Test Case 1: ");
+
+    if (isAnagram(s1, t1))
+        printf("true\n");
+    else
+        printf("false\n");
+
+
+    char s2[] = "rat";
+    char t2[] = "car";
+
+    printf("Test Case 2: ");
+
+    if (isAnagram(s2, t2))
+        printf("true\n");
+    else
+        printf("false\n");
+
+    return 0;
+}
